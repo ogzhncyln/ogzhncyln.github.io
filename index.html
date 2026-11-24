@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oğuzhan Ceylan | Portfolyo</title>
+<meta name="description" content="Robotik ve Yapay Zeka projelerim.">
+<style>
+  :root{
+    --bg:#0f1117; --card:#181b24; --border:#2a2f3d; --text:#e6e8ee; --muted:#9aa1b2; --accent:#4f8cff; --accent2:#7c5cff;
+  }
+  @media (prefers-color-scheme: light){
+    :root{--bg:#f5f6fa; --card:#fff; --border:#e1e4ec; --text:#1b1f2a; --muted:#5d6577;}
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+  header{padding:72px 0 40px;text-align:center}
+  header h1{font-size:clamp(2rem,5vw,3rem);background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);margin-top:12px;font-size:1.1rem}
+  .gh{display:inline-block;margin-top:20px;padding:8px 18px;border:1px solid var(--border);border-radius:999px;color:var(--muted);transition:.2s}
+  .gh:hover{color:var(--text);border-color:var(--accent)}
+  nav{display:flex;justify-content:center;gap:10px;margin:10px 0 36px;flex-wrap:wrap}
+  nav button{background:var(--card);color:var(--muted);border:1px solid var(--border);padding:8px 20px;border-radius:999px;cursor:pointer;font-size:.95rem;transition:.2s}
+  nav button:hover{color:var(--text)}
+  nav button.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border-color:transparent}
+  section{margin-bottom:56px}
+  section h2{font-size:1.5rem;margin-bottom:6px}
+  section .sub{color:var(--muted);margin-bottom:20px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+  .card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;transition:.2s}
+  .card.featured{grid-column:1/-1}
+  .card:hover{border-color:var(--accent);box-shadow:0 8px 24px rgba(79,140,255,.15)}
+  .meta.top{margin:0 0 10px}
+  details{margin-top:12px}
+  summary{cursor:pointer;color:var(--accent);font-size:.9rem}
+  details ul{margin:10px 0 0 18px;color:var(--muted);font-size:.9rem}
+  details li{margin-bottom:6px}
+  .links{display:flex;gap:16px;margin-top:16px;font-size:.9rem}
+  .links a{color:var(--accent)}
+  .links a:hover{text-decoration:underline}
+  .card h3{font-size:1.1rem;margin-bottom:8px;word-break:break-word}
+  .card p{color:var(--muted);font-size:.93rem}
+  .meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:var(--muted)}
+  .tag{padding:2px 10px;border:1px solid var(--border);border-radius:999px}
+  .hidden{display:none}
+  footer{text-align:center;color:var(--muted);padding:30px 0 50px;font-size:.9rem;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <h1>Portfolyo</h1>
+  <p>Robotik ve Yapay Zeka alanındaki projelerim</p>
+  <a class="gh" href="https://github.com/ogzhncyln" target="_blank" rel="noopener">GitHub: @ogzhncyln</a>
+</header>
+
+<main class="wrap">
+  <nav id="filters">
+    <button class="active" data-cat="all">Tümü</button>
+    <button data-cat="robotik">Robotik</button>
+    <button data-cat="ai">Yapay Zeka</button>
+  </nav>
+
+  <section id="robotik" data-section>
+    <h2>Robotik</h2>
+    <p class="sub">Mobil manipülatör, durum makinesi ve ROS–Unity entegrasyonu. Projeler oluşturulma tarihine göre, yeniden eskiye sıralıdır.</p>
+    <div class="grid" data-grid="robotik"></div>
+  </section>
+
+  <section id="ai" data-section>
+    <h2>Yapay Zeka</h2>
+    <p class="sub">Unity ile pekiştirmeli öğrenme köprüsü ve örnekleri. Yeniden eskiye sıralıdır.</p>
+    <div class="grid" data-grid="ai"></div>
+  </section>
+</main>
+
+<footer>© <span id="year"></span> ogzhncyln</footer>
+
+<script>
+  const projects = {
+    robotik: [
+      {name:"MobileRobotManipulator", date:"2026-11-24", lang:"Python · C++", tag:"ROS 2 · Manipülatör", featured:true,
+       desc:"ROS 2 Humble ve Gazebo Classic üzerinde çalışan otonom mobil manipülatör sistemi. TurtleBot3 Waffle Pi tabanı ve OpenMANIPULATOR-X koldan oluşur.",
+       points:["Robot dört odayı sırayla gezer: RGB-D kamerayla renkli küpleri bulur, aynı renkteki kutuya yerleştirir, kapı butonuna kolla basıp sonraki odaya geçer.",
+               "Kutulara ve şarj istasyonuna yaklaşırken AprilTag ile hassas hizalama yapılır.",
+               "Batarya eşiğin altına düşünce görev planlayıcı yeniden plan üretir; robot şarj olur ve görevine kaldığı yerden devam eder.",
+               "Teknolojiler: PlanSys2 (POPF) ile görev planlama, Nav2, MoveIt 2, OpenCV HSV segmentasyonu, Gazebo; ayrıca C++ Gazebo eklentileri (DoorButton, LinkAttacher)."],
+       url:"https://github.com/ogzhncyln/MobileRobotManipulator", demo:"https://www.youtube.com/watch?v=I_4om-5Doz4"},
+      {name:"EasySM", date:"2025-06-03", lang:"C++", tag:"State Machine",
+       desc:"C++ uygulamaları için basit ve esnek bir durum makinesi (state machine) kütüphanesi. Tek başına ya da ROS entegrasyonuyla kullanılabilir.",
+       points:["State sınıfından türetilen durumlar bir olay (event) metni döndürür; olay, eşleşen geçişi (transition) tetikler.",
+               "StateManager durumları ve geçişleri yönetir; DefaultStateManager ve RosStateManager sürümleri vardır.",
+               "CMake ile kurulur (-DUSE_ROS=ON ile ROS desteği) ve find_package(easysm) ile projeye eklenir.",
+               "Log, uyarı ve hata mesajları için dahili yardımcılar sunar."],
+       url:"https://github.com/ogzhncyln/EasySM"},
+      {name:"EasySM-Monitor", date:"2025-06-20", lang:"Python", tag:"Görselleştirme",
+       desc:"EasySM tabanlı durum makinelerini gerçek zamanlı izlemek için PyQt5 ile yazılmış görselleştirme ve hata ayıklama aracı.",
+       points:["ROS ortamında durum makinesinin çalışmasını canlı olarak grafik arayüzde gösterir.",
+               "Geliştirilmiş yönlendirme, tooltip ve loglama özellikleri içerir.",
+               "Özel .easysm_tree dosyası ve monitör topic'i ile başlatılabilir; Ctrl+S ile yapılandırma kaydedilir.",
+               "ROS Noetic ile test edilmiştir."],
+       url:"https://github.com/ogzhncyln/EasySM-Monitor"},
+      {name:"ROS-Unity-Lidar", date:"2024-09-04", lang:"C#", tag:"ROS · Unity",
+       desc:"Unity simülasyonları için ROS ile uyumlu LiDAR sensör eklentisi.",
+       points:["Hazır LidarSensor prefab'ı sahneye sürüklenerek kullanılır.",
+               "LidarCPU bileşeninden LiDAR parametreleri ayarlanır.",
+               "Burst paketi ile hızlandırılmıştır.",
+               "Haritalama (mapping) çıktılarının görselleri depoda mevcuttur."],
+       url:"https://github.com/ogzhncyln/ROS-Unity-Lidar"},
+      {name:"ROS-Unity-Imu", date:"2024-09-04", lang:"C#", tag:"ROS · Unity",
+       desc:"Unity simülasyonları için ROS ile uyumlu IMU sensör eklentisi.",
+       points:["Unity ortamındaki bir nesnenin IMU verisini ROS tarafına sağlamak üzere tasarlanmıştır.",
+               "Depoyu klonlamak kurulum için yeterlidir."],
+       url:"https://github.com/ogzhncyln/ROS-Unity-Imu"},
+      {name:"ROS-Unity-TF", date:"2024-09-04", lang:"C#", tag:"ROS · Unity",
+       desc:"Unity ortamında çalışan TF (koordinat dönüşümü) eklentisi.",
+       points:["Unity sahnesindeki nesnelerin koordinat çerçevelerini ROS TF ağacına uygun şekilde yayınlamak için kullanılır.",
+               "Lidar ve IMU eklentileriyle birlikte tam bir simülasyon sensör seti oluşturur."],
+       url:"https://github.com/ogzhncyln/ROS-Unity-TF"}
+    ],
+    ai: [
+      {name:"UnityRLBridge", date:"2024-04-12", lang:"C# · Python", tag:"Reinforcement Learning", featured:true,
+       desc:"Unity ortamlarını pekiştirmeli öğrenme (RL) uygulamalarında kullanmak için geliştirilmiş, çoklu ajan ve çoklu ortam destekli, kullanımı kolay bir köprü.",
+       points:["Unity tarafında sunucu, Python tarafında bir ya da daha fazla istemci olarak çalışır.",
+               "Ajanlar behavior_name (davranış türü) ve agent_name (tekil ajan) ile tanımlanır.",
+               "Python API: bridge.send_action(), bridge.reset(), bridge.close_connection().",
+               "Unity tarafında AgentBehavior sınıfından türetilerek ajan yazılır; gözlem boyutu, sürekli/ayrık aksiyon boyutları tanımlanır.",
+               "Bridge bileşeninde IP, port, timeScale (simülasyon hızı) ve maxClients ayarlanır."],
+       url:"https://github.com/ogzhncyln/UnityRLBridge"},
+      {name:"UnityRLBridgeExamples", date:"2024-04-15", lang:"C#", tag:"Örnekler",
+       desc:"UnityRLBridge paketinin kullanımını gösteren örnek ortamlar.",
+       points:["Move to Goal: iki eksende hareket eden küp biçimli bir ajan hedef konuma ulaşmaya çalışır.",
+               "Ortam Unity'de tasarlanmış, eğitim Python'da stable-baselines3 ile yapılmıştır.",
+               "Depoda eğitim sonuçları ve çalışma GIF'i bulunur."],
+       url:"https://github.com/ogzhncyln/UnityRLBridgeExamples"}
+    ]
+  };
+
+  const fmt = d => new Date(d).toLocaleDateString("tr-TR",{month:"long",year:"numeric"});
+  const esc = t => t.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+  for (const [cat, list] of Object.entries(projects)) {
+    const grid = document.querySelector(`[data-grid="${cat}"]`);
+    list.sort((a, b) => b.date.localeCompare(a.date)); // yeniden eskiye
+    grid.innerHTML = list.map(p => `
+      <article class="card${p.featured ? " featured" : ""}">
+        <div class="meta top"><span class="tag">${p.tag}</span><span>${fmt(p.date)} · ${p.lang}</span></div>
+        <h3>${p.name}</h3>
+        <p>${esc(p.desc)}</p>
+        <details>
+          <summary>Detaylar</summary>
+          <ul>${p.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+        </details>
+        <div class="links">
+          <a href="${p.url}" target="_blank" rel="noopener">GitHub →</a>
+          ${p.demo ? `<a href="${p.demo}" target="_blank" rel="noopener">Demo videosu →</a>` : ""}
+        </div>
+      </article>`).join("");
+  }
+
+  document.getElementById("filters").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    document.querySelectorAll("#filters button").forEach(x => x.classList.toggle("active", x === b));
+    document.querySelectorAll("[data-section]").forEach(s =>
+      s.classList.toggle("hidden", b.dataset.cat !== "all" && s.id !== b.dataset.cat));
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
